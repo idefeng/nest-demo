@@ -1,11 +1,21 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { PostsModule } from './posts/posts.module';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { CatsController } from './cats/cats.controller';
+import { CatsModule } from './cats/cats.module';
+import { Cat } from './model/cats.model';
 
 @Module({
-  imports: [PostsModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [CatsModule,
+  SequelizeModule.forRoot({
+    dialect: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: '123456',
+    database: 'nest-demo',
+    models: [Cat],
+  })],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
