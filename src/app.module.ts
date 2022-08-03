@@ -3,6 +3,10 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { CatsController } from './cats/cats.controller';
 import { CatsModule } from './cats/cats.module';
 import { Cat } from './model/cats.model';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
+import { PedantsTypeModule } from './pedants-type/pedants-type.module';
 
 @Module({
   imports: [CatsModule,
@@ -14,7 +18,9 @@ import { Cat } from './model/cats.model';
     password: '123456',
     database: 'nest-demo',
     models: [Cat],
-  })],
+  }),
+  UsersModule,
+  PedantsTypeModule],
   controllers: [],
   providers: [],
 })
